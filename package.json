@@ -81,7 +81,8 @@
     "globals": [
       "GOVUK",
       "moj",
-      "Stickyfill"
+      "Stickyfill",
+      "Response"
     ],
     "ignore": [
       "app/webpack/javascripts/vendor/",
