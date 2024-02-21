@@ -80,30 +80,26 @@
               %div
                 = validation_error_message(@error_presenter, :rejected_reason_other)
 
-      .js-cw-claim-refuse-reasons.hidden{ class: error_class(@error_presenter, :refused_reason) }
-        %div
-          = validation_error_message(@error_presenter, :refused_reason)
-
-        %fieldset.form-group.nested-fields.indent-fieldset.spacer{ 'aria-describedby': 'checkbox-control-legend-2' }
-          %legend#checkbox-control-legend-2.bold-normal.form-label
-            = t('.reason_for_refusal')
-
-          %a#refused_reason
-          = collection_check_boxes(nil, :state_reason, ClaimStateTransitionReason.refuse_reasons_for(@claim), :code, :description) do |b|
-            .multiple-choice
-              = b.check_box(checked: params[:state_reason].present? && params[:state_reason].include?(b.value), 'aria-labelledby': "checkbox-control-legend-2 #{b.text.to_css_class}")
-              = b.label { b.text }
-
-          .form-group.panel.nested-fields.fieldset.spacer.js-refuse-reason-text.hidden{ class: error_class(@error_presenter, :refused_reason_other) }
-            %div
+      %a#refused_reason
+      %div
+        = validation_error_message(@error_presenter, :refused_reason)
+      = f.govuk_check_boxes_fieldset :refuse_reason_text, legend: { text: t('reason_for_refusal') } do
+        - ClaimStateTransitionReason.refuse_reasons_for(@claim).each do |reason|
+          - if reason.code == 'other_refuse'
+            = f.govuk_check_box :refuse_reason_text,
+              reason.code,
+              label: { text: reason.description } do
               %a#refused_reason_other
-              = f.label :refuse_reason_text, class: 'form-label' do
-                = t('.reason_text')
-                .form-hint.xsmall
-                  = t('.reason_hint')
-              = f.text_field :refuse_reason_text, class: 'form-control'
+              = f.govuk_text_field :refuse_reason_text,
+                  label: { text: t('.reason_text') },
+                  hint: { text: t('.reason_hint') }
               %div
                 = validation_error_message(@error_presenter, :refused_reason_other)
+          - else
+            = f.govuk_check_box :refuse_reason_text,
+              reason.code,
+              label: { text: reason.description }
+
 
       %p
         = govuk_button(t('.update'), id: 'button')
