@@ -1,26 +1,30 @@
 require 'rails_helper'
 
 RSpec.describe Claims::UpdateDraft do
+  subject(:update_draft) { described_class.new(claim, params: claim_params, validate:) }
+
+  let(:claim) { create(:advocate_claim, case_number:) }
+  let(:case_number) { 'A20161234' }
+  let(:claim_params) { { case_number: 'A20165555' } }
+  let(:validate) { true }
+
   after(:all) do
     clean_database
   end
 
+  describe '#action' do
+    subject { update_draft.action }
+
+    it { is_expected.to eq(:edit) }
+  end
+
+  describe '#draft?' do
+    subject { update_draft.draft? }
+
+    it { is_expected.to be_truthy }
+  end
+
   context 'draft claim updates' do
-    let(:original_case_number) { 'A20161234' }
-    let(:claim) { create(:advocate_claim, case_number: original_case_number) }
-    let(:claim_params) { { case_number: 'A20165555' } }
-    let(:validate) { true }
-
-    subject(:update_draft) { described_class.new(claim, params: claim_params, validate:) }
-
-    it 'defines the action' do
-      expect(update_draft.action).to eq(:edit)
-    end
-
-    it 'is a draft' do
-      expect(update_draft.draft?).to be_truthy
-    end
-
     context 'successful draft updates' do
       context 'validation enabled' do
         let(:validate) { true }

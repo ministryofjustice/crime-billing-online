@@ -1,24 +1,28 @@
 require 'rails_helper'
 
 describe Claims::UpdateClaim do
+  subject(:update_claim) { described_class.new(claim, params: claim_params) }
+
+  let(:claim) { create(:advocate_claim, case_number: 'A20161234') }
+  let(:claim_params) { { case_number: 'A20165555' } }
+
   after(:all) do
     clean_database
   end
 
+  describe '#action' do
+    subject { update_claim.action }
+
+    it { is_expected.to eq(:edit) }
+  end
+
+  describe '#draft?' do
+    subject { update_claim.draft? }
+
+    it { is_expected.to be_falsey }
+  end
+
   context 'claim updating' do
-    let(:claim) { create(:advocate_claim, case_number: 'A20161234') }
-    let(:claim_params) { { case_number: 'A20165555' } }
-
-    subject(:update_claim) { described_class.new(claim, params: claim_params) }
-
-    it 'defines the action' do
-      expect(update_claim.action).to eq(:edit)
-    end
-
-    it 'is not a draft' do
-      expect(update_claim.draft?).to be_falsey
-    end
-
     context 'successful updates' do
       it 'forces validation' do
         allow(update_claim.claim).to receive(:force_validation=).with(true)

@@ -1,26 +1,30 @@
 require 'rails_helper'
 
 describe Claims::CreateDraft do
+  subject(:create_draft) { described_class.new(claim, validate:) }
+
+  # NOTE: a form_step needs to be supplied otherwise the service
+  # will validate all the steps for the claim
+  let(:claim) { build(:advocate_claim, form_step: :case_details) }
+  let(:validate) { true }
+
   after(:all) do
     clean_database
   end
 
+  describe '#action' do
+    subject { create_draft.action }
+
+    it { is_expected.to eq(:new) }
+  end
+
+  describe '#draft?' do
+    subject { create_draft.draft? }
+
+    it { is_expected.to be_truthy }
+  end
+
   context 'draft claim creation' do
-    # NOTE: a form_step needs to be supplied otherwise the service
-    # will validate all the steps for the claim
-    let(:claim) { build(:advocate_claim, form_step: :case_details) }
-    let(:validate) { true }
-
-    subject(:create_draft) { described_class.new(claim, validate:) }
-
-    it 'defines the action' do
-      expect(create_draft.action).to eq(:new)
-    end
-
-    it 'is a draft' do
-      expect(create_draft.draft?).to be_truthy
-    end
-
     context 'successful draft creations' do
       context 'validation enabled' do
         let(:validate) { true }

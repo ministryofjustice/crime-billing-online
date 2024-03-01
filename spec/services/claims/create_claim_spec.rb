@@ -1,24 +1,24 @@
 require 'rails_helper'
 
 describe Claims::CreateClaim do
+  subject(:create_claim) { described_class.new(claim) }
+
+  let(:claim) { build(:advocate_claim, uuid: SecureRandom.uuid) }
+
   after(:all) do
     clean_database
   end
 
-  let(:claim) { build(:advocate_claim, uuid: SecureRandom.uuid) }
-
-  subject { described_class.new(claim) }
-
   describe '#action' do
-    it 'returns :new' do
-      expect(subject.action).to eq(:new)
-    end
+    subject { create_claim.action }
+
+    it { is_expected.to eq(:new) }
   end
 
   describe '#draft?' do
-    it 'returns false' do
-      expect(subject.draft?).to be_falsey
-    end
+    subject { create_claim.draft? }
+
+    it { is_expected.to be_falsey }
   end
 
   describe '#call' do
