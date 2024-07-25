@@ -346,7 +346,7 @@ RSpec.shared_examples 'a claim create endpoint' do |options|
         it 'has had the London Rates Apply attribute correctly set' do
           valid_params[:london_rates_apply] = 'invalid string'
           post_to_create_endpoint
-          expect_error_response("what?")
+          expect_error_response('london_rates_apply is not in an acceptable format - choose true, false or nil')
         end
       end
 
