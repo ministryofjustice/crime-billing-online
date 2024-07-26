@@ -248,6 +248,16 @@ RSpec.shared_examples 'a claim validate endpoint' do |options|
       it { expect_error_response('london_rates_apply is not in an acceptable format - choose true, false or nil') }
       it { expect(LogStuff).to have_received(:send).with(:error, hash_including(type: 'api-error')) }
     end
+
+    context 'when london_rates_apply is empty' do
+      before do
+        valid_params[:london_rates_apply] = ''
+        post_to_validate_endpoint
+      end
+
+      it { expect_error_response('?') }
+      it { expect(LogStuff).to have_received(:send).with(:error, hash_including(type: 'api-error')) }
+    end
   end
 end
 

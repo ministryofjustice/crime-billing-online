@@ -61,7 +61,9 @@ class BaseValidator < ActiveModel::Validator
   end
 
   def validate_optional_boolean(attribute, message)
-    add_error(attribute, message) unless @record.__send__(attribute).in? [true, false, nil]
+    attr_value = @record.__send__(attribute)
+    puts "#{attribute}: #{attr_value}"
+    add_error(attribute, message) unless attr_value.in? [true, false]
   end
 
   def validate_max_length(attribute, length, message)

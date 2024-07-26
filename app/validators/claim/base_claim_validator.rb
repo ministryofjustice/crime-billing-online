@@ -62,7 +62,8 @@ module Claim
 
     # optional, must be boolean if present
     def validate_london_rates_apply
-      validate_optional_boolean(:london_rates_apply, :not_boolean_or_nil)
+      validate_presence(:london_rates_apply, :blank)
+      validate_optional_boolean(:london_rates_apply, :check_not_in_future)
     end
 
     # object must be present

@@ -102,7 +102,11 @@ supplier_number:
 
 london_rates_apply:
   _seq: 6
-  not_boolean_or_nil:
+  blank:
+    long: test test test test test test test test 
+    short: short test
+    api: api test test test test test test test test test 
+  check_not_in_future:
     long: Choose True or False to indicate if your firm is based inside a London Borough
     short: _
     api: london_rates_apply is not in an acceptable format - choose true, false or nil
