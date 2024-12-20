@@ -23,8 +23,8 @@
     - if claim.transfer?
       = render partial: 'shared/new_claim_transfer_details', locals: { claim: claim }
 
-  - if claim&.requires_trial_dates?
-    = render partial: 'shared/new_claim_trial_details', locals: { claim: claim }
+    - if claim&.requires_trial_dates?
+      = render partial: 'shared/new_claim_trial_details', locals: { claim: claim }
 
     - if claim&.requires_retrial_dates?
       = render partial: 'shared/new_claim_retrial_details', locals: { claim: claim }
