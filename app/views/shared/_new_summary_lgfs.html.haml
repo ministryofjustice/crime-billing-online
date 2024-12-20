@@ -62,6 +62,9 @@
                 %td.govuk-table__cell.align-right
                   = fee.amount
 
-        .totals
-          = t('.fees_total')
-          = claim.fees_total
+          .govuk-summary-list
+            %dl.govuk-summary-list__row.total-fees
+              %dt.govuk-summary-list__key.total-fees
+                = t('.fees_total')
+              %dd.govuk-summary-list__value
+                = claim.fees_total
