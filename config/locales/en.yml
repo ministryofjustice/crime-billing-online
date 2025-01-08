@@ -2271,13 +2271,17 @@ en:
         travel_expense_additional_information: Additional information
         travel_expenses: Travel expenses
         travel_details: Travel details
+        new_index:
+          destination: "Destination: "
+          distance: "Distance: "
+          cost: "Cost per mile: "
         index:
           calculated_distance: Calculated distance
           caption: *expenses_caption
           date: Date of expense
           details: Details
           expense_type: Type of expense
-          gross_amount: Gross amount
+          gross_amount: Total amount
           header_with_vat: Expenses with VAT
           header_without_vat: Expenses without VAT
           net_amount: *net_amount
@@ -2285,6 +2289,9 @@ en:
           totals_with_vat: Expenses with VAT total
           totals_without_vat: Expenses without VAT total
           vat: *vat_amount
+        new_details:
+          distance_claimed: Distance claimed
+          distance: Distance
         details:
           distance_calculated: Distance calculated
           distance_claimed: Distance claimed
