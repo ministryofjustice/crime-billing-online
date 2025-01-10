@@ -41,3 +41,7 @@ end
 class FalseClass
   include Extensions::BooleanExtension::False
 end
+
+class Object
+  include Extensions::ObjectExtension
+end
