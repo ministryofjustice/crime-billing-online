@@ -42,6 +42,8 @@ class FalseClass
   include Extensions::BooleanExtension::False
 end
 
-class Object
-  include Extensions::ObjectExtension
+module GOVUKDesignSystemFormBuilder
+  class FormBuilder
+    include Extensions::FormBuilderExtension
+  end
 end
