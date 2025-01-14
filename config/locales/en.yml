@@ -2587,19 +2587,18 @@ en:
         date_issued: "Warrant issued"
         date_executed: "Warrant executed"
         total: "Total"
-      total: "Total"
-      ppe_total: "PPE total at the time"
-      effective_pcmh_date: "Effective PCMH"
-      trial_start: "Trial start"
-      estimated_trial_length: "Trial estimated length"
-      retrial_start: "Re-trial start"
-      estimated_retrial_length: "Re-trial estimated length"
-      legal_aid_transfer_date: "Legal aid transfer"
-      trial_concluded_at: "First trial concluded"
-      no_values:
-        fees: "There are no fees for this claim"
-        expenses: "There are no expenses for this claim"
-        disbursements: "There are no disbursements for this claim"
+        ppe_total: "PPE total at the time"
+        effective_pcmh_date: "Effective PCMH"
+        trial_start: "Trial start"
+        estimated_trial_length: "Trial estimated length"
+        retrial_start: "Re-trial start"
+        estimated_retrial_length: "Re-trial estimated length"
+        legal_aid_transfer_date: "Legal aid transfer"
+        trial_concluded_at: "First trial concluded"
+        no_values:
+          fees: "There are no fees for this claim"
+          expenses: "There are no expenses for this claim"
+          disbursements: "There are no disbursements for this claim"
 
     supplier_numbers:
       add_supplier: Add another supplier
