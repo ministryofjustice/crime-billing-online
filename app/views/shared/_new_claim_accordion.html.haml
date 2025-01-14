@@ -21,6 +21,14 @@
   .js-accordion__panel
     = render partial: 'shared/new_claim', locals: { claim: claim, hide_totals: true }
 
+  - if claim.defendants.any?
+    %h2.govuk-heading-l
+      = t('.h2_defendant_details')
+    .js-accordion__panel
+      = render partial: 'shared/new_claim_defendants', locals: { defendants: claim.defendants }
+  -else
+    = render partial: 'new_defendant_details', locals: { defendants: claim.defendants }
+
   %h2.govuk-heading-l
     = t('.h2_evidence')
   .js-accordion__panel
